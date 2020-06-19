@@ -1,0 +1,22 @@
+.wcfpt .list {
+  display: flex;
+  align-items: center;
+}
+.wcfpt .list .item {
+  display: flex;
+  align-items: center;
+}
+.wcfpt .list .item:after {
+  font-size: 1.5rem;
+  content: " + ";
+  padding: 0 0.5rem;
+}
+.wcfpt .list .item:last-child:after {
+  padding: 0;
+  content: "";
+}
+.wcfpt form label {
+  display: inline;
+}
+
+/*# sourceMappingURL=style.css.map */
