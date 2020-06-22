@@ -118,7 +118,7 @@ class WC_fpt{
         if( $search_results->have_posts() ) :
             while( $search_results->have_posts() ) : $search_results->the_post();	
                 // shorten the title a little
-                $title = ( mb_strlen( $search_results->post->post_title ) > 50 ) ? mb_substr( $search_results->post->post_title, 0, 49 ) . '...' : $search_results->post->post_title;
+                $title = $this->truncate( $search_results->post->post_title );
                 $return[] = array( $search_results->post->ID, $title ); // array( Post ID, Post Title )
             endwhile;
         endif;
@@ -133,6 +133,16 @@ class WC_fpt{
          * Display a section for adding all FPT products to the cart with a single click
          */
         include_once( 'template/frequently-purchased-together-list.php' );
+    }
+
+    private function truncate( $str, $limit = 50 ){
+        /**
+         * Limits the number of characters in a string
+         * @param string $str
+         * @param int $limit
+         * @return string
+         */
+        return ( mb_strlen( $str ) > $limit ) ? mb_substr( $str, 0, ($limit - 1) ) . '...' : $str;
     }
 
     private function package_frequently_purchased_together_data( $product_id ){
@@ -159,10 +169,11 @@ class WC_fpt{
             if( $product ){
                 // add to packaged array
                 array_push( $packaged_data, array(
-                    'id' => $product->get_id(),
-                    'title' => $product->get_name(),
-                    'permalink' => $product->get_permalink(),
-                    'image_src' => wp_get_attachment_image_src( $product->get_image_id() )[0],
+                    'id'         => $product->get_id(),
+                    'title'      => $this->truncate( $product->get_name() ),
+                    'permalink'  => $product->get_permalink(),
+                    'image_src'  => wp_get_attachment_image_src( $product->get_image_id() )[0],
+                    'price'      => $product->get_price(),
                     'price_html' => $product->get_price_html(),
                 ) );
             }

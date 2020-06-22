@@ -15,8 +15,28 @@
   padding: 0;
   content: "";
 }
-.wcfpt form label {
+.wcfpt form.wcfpt-add-to-cart {
+  padding-top: 1rem;
+}
+.wcfpt form.wcfpt-add-to-cart label {
   display: inline;
+}
+.wcfpt form.wcfpt-add-to-cart label:first-child:before {
+  content: "This item:";
+}
+.wcfpt form.wcfpt-add-to-cart label span.price {
+  font-size: 1rem;
+  margin: 0;
+  line-height: normal;
+}
+.wcfpt form.wcfpt-add-to-cart label span.price span.woocommerce-Price-amount {
+  font-size: 1rem;
+  margin: 0;
+  line-height: normal;
+  content: "";
+}
+.wcfpt form.wcfpt-add-to-cart label span.price span.woocommerce-Price-amount:before {
+  content: "" !important;
 }
 
 /*# sourceMappingURL=style.css.map */

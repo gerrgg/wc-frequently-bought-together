@@ -20,18 +20,33 @@
         }
     }
     
-    form{
-        label { 
-            display: inline;
-        
+    form.wcfpt-add-to-cart{
+        padding-top: 1rem;
+
+        label{ 
+            display: inline; 
+            
+            &:first-child:before{
+                content: "This item:"
+            }
+
+            span.price{
+                font-size: 1rem;
+                margin: 0;
+                line-height: normal;
+                
+                span.woocommerce-Price-amount{
+                    font-size: 1rem;
+                    margin: 0;
+                    line-height: normal;
+                    content: '';
+    
+                    &:before{ content: '' !important }
+                }
+            }
+            
         }
 
-    }
-}
 
-@mixin text-ellipsis{
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;  
+    }
 }

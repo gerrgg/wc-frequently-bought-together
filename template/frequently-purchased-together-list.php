@@ -6,6 +6,8 @@
  global $product;
 
  $frequently_purchased_together = $this->package_frequently_purchased_together_data( $product->get_id() );
+ $total_price = 0;
+
  if( empty( $frequently_purchased_together ) ) return;
 
  ?>
@@ -19,7 +21,10 @@
         <?php for( $i = 0; $i < sizeof( $frequently_purchased_together ); $i++ ) : ?>
             <div class="item">
             
-                <?php $data = $frequently_purchased_together[$i] ?>
+                <?php 
+                    $data = $frequently_purchased_together[$i];
+                    $total_price += $data['price'];
+                ?>
 
                 <?php if( $i != 0 ) : ?>
                     <a href="<?php echo $data['permalink'] ?>">
@@ -38,17 +43,24 @@
     </div>
     
     <form class="wcfpt-add-to-cart">
+
         <?php for( $i = 0; $i < sizeof( $frequently_purchased_together ); $i++ ) : ?>
             
             <?php $data = $frequently_purchased_together[$i] ?>
 
-            <input type="checkbox" for="wcfpt-<?php echo $data['id'] ?>" name="add-to-cart[]" value="<?php echo $data['id'] ?>" />
+            <input type="checkbox" for="wcfpt-<?php echo $data['id'] ?>" name="add-to-cart[]" value="<?php echo $data['id'] ?>" checked/>
             <label for="wcfpt-<?php echo $data['id'] ?>">
+
+                <?php if( $i == 0 ) : ?>
+                    <span><b>This item:</b></span>
+                <?php endif; ?>
+
                 <span class="title"><?php echo $data['title'] ?></span>
                 <span class="price"><?php echo $data['price_html'] ?></span>
             </label>
             <br>
 
-        <?php endfor; ?>  
+        <?php endfor; ?>
+
     </form>
 </div>
