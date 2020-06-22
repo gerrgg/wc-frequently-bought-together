@@ -15,30 +15,41 @@
 <div class="wcfpt frequently-purchased-together">
 
     <h3>Frequently Bought Together</h3>
+    
+    <div class="wrapper">
 
-    <div class="list">
+        <div class="list">
 
-        <?php for( $i = 0; $i < sizeof( $frequently_purchased_together ); $i++ ) : ?>
-            <div class="item">
-            
-                <?php 
-                    $data = $frequently_purchased_together[$i];
-                    $total_price += $data['price'];
-                ?>
+            <?php for( $i = 0; $i < sizeof( $frequently_purchased_together ); $i++ ) : ?>
 
-                <?php if( $i != 0 ) : ?>
-                    <a href="<?php echo $data['permalink'] ?>">
-                <?php endif; ?>
+                <div class="item">
+                
+                    <?php 
+                        $data = $frequently_purchased_together[$i];
+                        $total_price += $data['price'];
+                    ?>
 
-                    <img src="<?php echo $data['image_src'] ?>" />
+                    <?php if( $i != 0 ) : ?>
+                        <a href="<?php echo $data['permalink'] ?>">
+                    <?php endif; ?>
 
-                <?php if( $i != 0 ) : ?>
-                    </a>
-                <?php endif; ?>  
-            
-            </div>
+                        <img src="<?php echo $data['image_src'] ?>" />
 
-        <?php endfor; ?>  
+                    <?php if( $i != 0 ) : ?>
+                        </a>
+                    <?php endif; ?>  
+                
+                </div>
+
+            <?php endfor; ?>  
+
+        </div>
+
+        <div class="form-actions">
+            <p>Total Price: <span class="woocommerce-Price-amount amount"><?php echo get_woocommerce_currency_symbol() . $total_price; ?></span></p>
+            <button>Add to cart</button>
+        </div>
+        
 
     </div>
     

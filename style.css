@@ -1,3 +1,6 @@
+.wcfpt .wrapper {
+  display: flex;
+}
 .wcfpt .list {
   display: flex;
   align-items: center;
@@ -14,6 +17,18 @@
 .wcfpt .list .item:last-child:after {
   padding: 0;
   content: "";
+}
+.wcfpt .form-actions {
+  padding: 0.5rem;
+}
+.wcfpt .form-actions p {
+  margin-bottom: 0.25rem;
+  color: #6d6d6d;
+  font-size: 0.9rem;
+}
+.wcfpt .form-actions p span.amount {
+  font-size: 1.25rem;
+  color: #b12704;
 }
 .wcfpt form.wcfpt-add-to-cart {
   padding-top: 1rem;

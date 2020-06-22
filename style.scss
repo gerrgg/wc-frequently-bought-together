@@ -1,4 +1,7 @@
 .wcfpt{
+
+    .wrapper{ display: flex; }
+
     .list{
         display: flex;
         align-items: center;
@@ -16,6 +19,22 @@
             &:last-child:after{
                 padding: 0;
                 content: '';
+            }
+        }
+    }
+
+    .form-actions{
+        padding: .5rem;
+
+        p{
+            margin-bottom: .25rem;
+            color: rgb(109, 109, 109);
+            font-size: 0.9rem;
+            // font-size: 1rem;
+
+            span.amount{
+                font-size: 1.25rem;
+                color: #b12704;
             }
         }
     }
