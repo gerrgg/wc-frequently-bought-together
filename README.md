@@ -15,7 +15,7 @@
 Allows admins to link products together as "frequently purchased together" and add multiple items to the cart at the same time. The form is dynamic - changing the url and button text - as items are checked on and off.
 
 ## Screenshots
-![WCFPT Select2 Box on Edit Product screen](./img/wcfbt-back-end.png)
+![WCFPT Select2 Box on Edit Product screen](./img/wcfpt-back-end.png)
 ![WCFPT form on product page](./img/wc-fbt-front-end.png)
 
 
@@ -44,4 +44,4 @@ Project is: _in progress_
 Special shoutout to [@jtsternberg](https://dsgnwrks.pro/snippets/woocommerce-allow-adding-multiple-products-to-the-cart-via-the-add-to-cart-query-string/) for providing the hack for adding multiple products to cart.
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by [@gerrgg](http://gerrg.com/) - feel free to contact me!
