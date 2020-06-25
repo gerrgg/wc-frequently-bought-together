@@ -5,14 +5,17 @@ jQuery(function($){
   		ajax: {
     			url: ajaxurl, // AJAX URL is predefined in WordPress admin
     			dataType: 'json',
-    			delay: 250, // delay in ms while typing when to perform a AJAX search
+				delay: 250, // delay in ms while typing when to perform a AJAX search
+				
     			data: function (params) {
       				return {
         				q: params.term, // search query
         				action: 'wcfpt_get_products' // AJAX action for admin-ajax.php
       				};
-    			},
+				},
+				
     			processResults: function( data ) {
+					console.log( data )
                     var options = [];
                     if ( data ) {
     

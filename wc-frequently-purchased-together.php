@@ -45,7 +45,7 @@ class WC_fpt{
         wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css' );
         wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js', array('jquery') );
         
-	    wp_enqueue_script('wcfpt-script', plugin_dir_url( __FILE__ ) . 'functions.js', array( 'jquery', 'select2' ), '', true ); 
+	    wp_enqueue_script('wcfpt-admin', plugin_dir_url( __FILE__ ) . 'js/admin.js', array( 'jquery', 'select2' ), '', true ); 
  
     }
 
@@ -54,6 +54,7 @@ class WC_fpt{
          * Enqueue select2 style and javascript - also custom file for usage.
          */
         wp_enqueue_style( 'wcfpt', plugin_dir_url( __FILE__ ) . 'style.css' );
+        wp_enqueue_script( 'wcfpt-frontend', plugin_dir_url( __FILE__ ) . 'js/functions.js', array(), '', true ); 
     }
 
     public function frequently_purchased_together_html( ){
@@ -110,10 +111,19 @@ class WC_fpt{
 	    // you can use WP_Query, query_posts() or get_posts() here - it doesn't matter
         $search_results = new WP_Query( array( 
             's'=> $_GET['q'], 
+            'post_type' => 'product',
             'post_status' => 'publish',
             'ignore_sticky_posts' => 1,
-            'posts_per_page' => 50
+            'posts_per_page' => 50,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'product_type',
+                    'field'    => 'slug',
+                    'terms'    => 'simple', 
+                ),
+            ),
         ) );
+
 
         if( $search_results->have_posts() ) :
             while( $search_results->have_posts() ) : $search_results->the_post();	
@@ -187,5 +197,8 @@ class WC_fpt{
  * Check if WooCommerce is active
  **/
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+
+    include_once( 'functions.php' );
+
     new WC_fpt();
 }

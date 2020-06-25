@@ -1,4 +1,4 @@
-.wcfpt{
+#wcfpt-frequently-purchased-together{
 
     .wrapper{ display: flex; }
 
@@ -32,14 +32,25 @@
             font-size: 0.9rem;
             // font-size: 1rem;
 
-            span.amount{
-                font-size: 1.25rem;
-                color: #b12704;
-            }
         }
     }
+
+    span.amount{
+        color: #b12704;
+        font-size: 1.2rem;
+    }
+
+    #wcfpt-add-to-cart-button{
+        background-color: #333;
+        padding: .125rem .25rem;
+        color: #fff;
+        display: block;
+        text-align: center;
+        font-weight: 600;
+        font-size: .75rem
+    }
     
-    form.wcfpt-add-to-cart{
+    #wcfpt-add-to-cart-form{
         padding-top: 1rem;
 
         label{ 
