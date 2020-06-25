@@ -1,0 +1,65 @@
+=== WC Frequently Purchased Together ===
+Contributors: gregbast1994
+Tags: woocommerce, wordpress, add-to-cart,
+Requires at least: 1.00
+Tested up to: 5.4.2
+Requires PHP: 7.0
+Stable tag: master
+License: GNU General Public License v3.0
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+Group up items and allows customers to add them all to the cart in a single click.
+
+== Description ==
+# WC Frequently Purchased Together
+> Brings \'frequently bought together\' functionality to woocommerce.
+
+## Table of contents
+* [General info](#general-info)
+* [Screenshots](#screenshots)
+* [Setup](#setup)
+* [Features](#features)
+* [Status](#status)
+* [Inspiration](#inspiration)
+* [Contact](#contact)
+
+## General info
+Allows admins to link products together as \"frequently purchased together\" and add multiple items to the cart at the same time. The form is dynamic - changing the url and button text - as items are checked on and off.
+
+## Screenshots
+### Back End 
+![WCFPT Select2 Box on Edit Product screen](./img/wcfpt-back-end.png)
+### Product Page 
+![WCFPT form on product page](./img/wc-fbt-front-end.png)
+
+
+## Setup
+1. Download the plugin
+2. Install
+3. Go to Edit Product > Related Items
+4. Add a few products
+5. Go to product page to test
+
+## Features
+List of features ready and TODOs for future development
+* Select2 input box for easy adding of product IDS on related products tab
+* Dynamic add to cart form - allowing users to easily remove specific items while adding the rest to cart
+* Allows adding multiple items to the cart on the click of a button
+
+## To-do list:
+* Create table which would allow reverse look ups - A + B on both product A\'s page & B\'s.
+* Include a quantity input field
+* Make compatible with variable products
+
+## Status
+Project is: _in progress_
+
+## Inspiration
+Special shoutout to [@jtsternberg](https://dsgnwrks.pro/snippets/woocommerce-allow-adding-multiple-products-to-the-cart-via-the-add-to-cart-query-string/) for providing the hack for adding multiple products to cart.
+
+## Contact
+Created by [@gerrgg](http://gerrg.com/) - feel free to contact me!
+
+== Screenshots ==
+1. WCFPT Select2 Box on Edit Product screen
+2. WCFPT form on product page
