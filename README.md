@@ -15,7 +15,9 @@
 Allows admins to link products together as "frequently purchased together" and add multiple items to the cart at the same time. The form is dynamic - changing the url and button text - as items are checked on and off.
 
 ## Screenshots
+### Back End 
 ![WCFPT Select2 Box on Edit Product screen](./img/wcfpt-back-end.png)
+### Product Page 
 ![WCFPT form on product page](./img/wc-fbt-front-end.png)
 
 
