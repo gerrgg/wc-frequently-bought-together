@@ -34,7 +34,7 @@ List of features ready and TODOs for future development
 * Dynamic add to cart form - allowing users to easily remove specific items while adding the rest to cart
 * Allows adding multiple items to the cart on the click of a button
 
-To-do list:
+## To-do list:
 * Create table which would allow reverse look ups - A + B on both product A's page & B's.
 * Include a quantity input field
 * Make compatible with variable products
