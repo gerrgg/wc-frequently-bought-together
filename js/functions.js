@@ -2,6 +2,7 @@ const FrequentlyPurchasedTogether = ( e ) => {
 	
 	let button = e.querySelector('#wcfpt-add-to-cart-button');
 	let inputs = e.getElementsByTagName('input');
+	let priceTotalDom = e.querySelector('#wcfpt-price-total');
 
 	const setup = () => {
 		/**
@@ -9,25 +10,40 @@ const FrequentlyPurchasedTogether = ( e ) => {
 		 */
 		
 		for( let input of inputs ){
-			input.addEventListener( 'click', addToOrderList )
+			input.addEventListener( 'click', countInputs )
 		}
-	
-		addToOrderList();
+
+		
+		countInputs();
 	}
 
-	const addToOrderList = ( ) => {
+	const countInputs = ( ) => {
 		/**
 		 * Creates a list of product ids based on which inputs are checked off
 		 */
 		let orderList = [];
+		let totalPrice = 0;
 
 		for( let input of inputs ){
-			if( input.checked ) orderList.push(input.value)
-		}
 
+			if( input.checked ) {
+				orderList.push(input.value)
+
+				// Get price element and remove '$'
+				totalPrice += parseFloat(input.nextElementSibling.lastElementChild.innerText.substring(1));
+			}
+			
+		}
+		
+		setTotalPrice( totalPrice )
 		buildUrl( orderList )
 
 	};
+
+	const setTotalPrice = ( totalPrice ) => {
+
+		priceTotalDom.innerText = '$' + totalPrice;
+	}
 
 	const buildUrl = ( orderList ) => {
 		/**

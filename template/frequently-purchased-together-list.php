@@ -46,7 +46,7 @@
         </div>
 
         <div class="form-actions">
-            <p>Total Price: <span class="woocommerce-Price-amount amount"><?php echo get_woocommerce_currency_symbol() . number_format( $total_price, 2); ?></span></p>
+            <p>Total Price: <span id="wcfpt-price-total" class="woocommerce-Price-amount amount"><?php echo get_woocommerce_currency_symbol() . number_format( $total_price, 2); ?></span></p>
             <a id="wcfpt-add-to-cart-button" href="#">Add to cart</a>
         </div>
         
