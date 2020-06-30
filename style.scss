@@ -1,6 +1,11 @@
+$phone-width: "only screen and (max-width: 576px)";
+
 #wcfbt-frequently-bought-together{
 
-    .wrapper{ display: flex; }
+    .wrapper{ 
+        display: flex; 
+        @media #{$phone-width}{ display: block;  }
+    }
 
     .list{
         display: flex;

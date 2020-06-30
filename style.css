@@ -1,6 +1,11 @@
 #wcfbt-frequently-bought-together .wrapper {
   display: flex;
 }
+@media only screen and (max-width: 576px) {
+  #wcfbt-frequently-bought-together .wrapper {
+    display: block;
+  }
+}
 #wcfbt-frequently-bought-together .list {
   display: flex;
   align-items: center;
