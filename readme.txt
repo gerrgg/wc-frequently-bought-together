@@ -1,4 +1,4 @@
-=== WC Frequently Purchased Together ===
+=== Frequently Bought Together for Woocommerce ===
 Contributors: gregbast1994
 Tags: woocommerce, wordpress, add-to-cart,
 Requires at least: 1.00
@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Group up items and allows customers to add them all to the cart in a single click.
 
 == Description ==
-# WC Frequently Purchased Together
+# Frequently Bought Together for Woocommerce
 > Brings \'frequently bought together\' functionality to woocommerce.
 
 ## Table of contents

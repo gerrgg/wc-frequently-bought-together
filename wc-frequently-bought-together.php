@@ -1,9 +1,9 @@
 <?php 
 /**
- * Plugin Name: WC Frequently Bought Together
+ * Plugin Name: Frequently Bought Together for WooCommerce
  * Plugin URI: http://gerrg.com/wc-frequently-bought-together
  * Description: Group up items frequently purchased together and add to cart with a single click.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: GREG BASTIANELLI
  * Author URI: http://gerrg.com/
  * Text Domain: wcfbt
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-class WC_fpt{
+class wcfbt_frequently_bought_together{
     
     function __construct(){
         // enqueue stylesheets
@@ -42,9 +42,11 @@ class WC_fpt{
         /**
          * Enqueue select2 style and javascript - also custom file for usage.
          */
-        wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css' );
-        wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js', array('jquery') );
-        
+
+         // use woocommerce select2
+        wp_enqueue_style('select2', WC()->plugin_url() . '/assets/css/select2.css' );
+        wp_enqueue_script('select2', WC()->plugin_url() . '/assets/js/select2/select2.min.js', array('jquery') );
+
 	    wp_enqueue_script('wcfbt-admin', plugin_dir_url( __FILE__ ) . 'js/admin.js', array( 'jquery', 'select2' ), '', true ); 
  
     }
@@ -99,7 +101,17 @@ class WC_fpt{
          * If we want reverse look ups - maybe create custom table so that A + B is shown on both product pages.
          * THEY DO have a directly relationship with eachother.
          */
-        if( isset( $_POST['wcfbt_frequently_bought_together'] ) ) update_post_meta( $post_id, 'wcfbt_frequently_bought_together', $_POST['wcfbt_frequently_bought_together'] );
+        if( isset( $_POST['wcfbt_frequently_bought_together'] ) ) {
+
+            // check for posts
+            $posts = isset( $_POST['wcfbt_frequently_bought_together'] ) ? (array) $_POST['wcfbt_frequently_bought_together'] : array();
+
+            // sanitize the array
+            $posts = array_map( 'sanitize_text_field', $posts );
+
+            // update
+            update_post_meta( $post_id, 'wcfbt_frequently_bought_together', $posts );
+        }
 
         return $post_id;
     }
@@ -113,7 +125,7 @@ class WC_fpt{
  
 	    // you can use WP_Query, query_posts() or get_posts() here - it doesn't matter
         $search_results = new WP_Query( array( 
-            's'=> $_GET['q'], 
+            's'=> sanitize_text_field( $_GET['q'] ), 
             'post_type' => array( 'product', 'product_variation'),
             'post_status' => 'publish',
             'ignore_sticky_posts' => 1,
@@ -207,5 +219,5 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
     include_once( 'functions.php' );
 
-    new WC_fpt();
+    new wcfbt_frequently_bought_together();
 }

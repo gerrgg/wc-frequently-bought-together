@@ -1,5 +1,5 @@
-# WC Frequently Bought Together
-> Brings 'frequently bought together' functionality to woocommerce.
+# Frequently Bought Together for WooCommerce
+> Brings 'frequently bought together' functionality to WooCommerce.
 
 ## Table of contents
 * [General info](#general-info)
