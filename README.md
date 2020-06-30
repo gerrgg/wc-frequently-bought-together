@@ -1,4 +1,4 @@
-# WC Frequently Purchased Together
+# WC Frequently Bought Together
 > Brings 'frequently bought together' functionality to woocommerce.
 
 ## Table of contents
@@ -35,8 +35,7 @@ List of features ready and TODOs for future development
 
 ## To-do list:
 * Create table which would allow reverse look ups - A + B on both product A's page & B's.
-* Include a quantity input field
-* Make compatible with variable products
+* Improve mobile view
 
 ## Status
 Project is: _in progress_
