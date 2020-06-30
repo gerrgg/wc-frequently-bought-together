@@ -28,9 +28,9 @@ Allows admins to link products together as \"frequently purchased together\" and
 
 ## Screenshots
 ### Back End 
-![WCFPT Select2 Box on Edit Product screen](./img/wcfpt-back-end.png)
+![wcfbt Select2 Box on Edit Product screen](./img/wcfbt-back-end.png)
 ### Product Page 
-![WCFPT form on product page](./img/wc-fbt-front-end.png)
+![wcfbt form on product page](./img/wc-fbt-front-end.png)
 
 
 ## Setup
@@ -61,5 +61,5 @@ Special shoutout to [@jtsternberg](https://dsgnwrks.pro/snippets/woocommerce-all
 Created by [@gerrgg](http://gerrg.com/) - feel free to contact me!
 
 == Screenshots ==
-1. WCFPT Select2 Box on Edit Product screen
-2. WCFPT form on product page
+1. wcfbt Select2 Box on Edit Product screen
+2. wcfbt form on product page

@@ -15,9 +15,9 @@ Allows admins to link products together as "frequently purchased together" and a
 
 ## Screenshots
 ### Back End 
-![WCFPT Select2 Box on Edit Product screen](./img/wcfpt-back-end.png)
+![wcfbt Select2 Box on Edit Product screen](./img/wcfbt-back-end.png)
 ### Product Page 
-![WCFPT form on product page](./img/wc-fbt-front-end.png)
+![wcfbt form on product page](./img/wc-fbt-front-end.png)
 
 
 ## Setup

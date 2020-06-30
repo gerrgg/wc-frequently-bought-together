@@ -1,7 +1,7 @@
 jQuery(function($){
 
 	// multiple select with AJAX search
-	$('#wcfpt_frequently_purchased_together').select2({
+	$('#wcfbt_frequently_bought_together').select2({
   		ajax: {
     			url: ajaxurl, // AJAX URL is predefined in WordPress admin
     			dataType: 'json',
@@ -10,7 +10,7 @@ jQuery(function($){
     			data: function (params) {
       				return {
         				q: params.term, // search query
-        				action: 'wcfpt_get_products' // AJAX action for admin-ajax.php
+        				action: 'wcfbt_get_products' // AJAX action for admin-ajax.php
       				};
 				},
 				

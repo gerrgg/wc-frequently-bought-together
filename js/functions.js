@@ -1,8 +1,8 @@
 const FrequentlyPurchasedTogether = ( e ) => {
 	
-	let button = e.querySelector('#wcfpt-add-to-cart-button');
+	let button = e.querySelector('#wcfbt-add-to-cart-button');
 	let inputs = e.getElementsByTagName('input');
-	let priceTotalDom = e.querySelector('#wcfpt-price-total');
+	let priceTotalDom = e.querySelector('#wcfbt-price-total');
 
 	const setup = () => {
 		/**
@@ -41,8 +41,7 @@ const FrequentlyPurchasedTogether = ( e ) => {
 	};
 
 	const setTotalPrice = ( totalPrice ) => {
-
-		priceTotalDom.innerText = '$' + totalPrice;
+		priceTotalDom.innerText = '$' + totalPrice.toFixed(2);
 	}
 
 	const buildUrl = ( orderList ) => {
@@ -89,7 +88,7 @@ const FrequentlyPurchasedTogether = ( e ) => {
 
 };
 
-let wcftp = document.getElementById('wcfpt-frequently-purchased-together');
+let wcftp = document.getElementById('wcfbt-frequently-bought-together');
 
 // Run only when form available.
 if( document.body.contains( wcftp ) ){

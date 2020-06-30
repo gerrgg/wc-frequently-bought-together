@@ -1,12 +1,12 @@
 <?php 
 /**
- * Plugin Name: WC Frequently Purchased Together
- * Plugin URI: http://gerrg.com/wc-frequently-purchased-together
- * Description: Group up items and allows customers to add them all to the cart in a single click.
- * Version: 1.0.0
+ * Plugin Name: WC Frequently Bought Together
+ * Plugin URI: http://gerrg.com/wc-frequently-bought-together
+ * Description: Group up items frequently purchased together and add to cart with a single click.
+ * Version: 1.0.1
  * Author: GREG BASTIANELLI
- * Author URI: http://gregbastianelli.com/
- * Text Domain: wcfpt
+ * Author URI: http://gerrg.com/
+ * Text Domain: wcfbt
  * Domain Path: /languages
  *
  * License: GNU General Public License v3.0
@@ -25,17 +25,17 @@ class WC_fpt{
         // enqueue admin scripts
         add_action( 'admin_enqueue_scripts', array( $this, '_admin_enqueue_scripts' ) );
 
-        // Adds the frequently_purchased_together select box into the link_products tab on product edit
-        add_action( 'woocommerce_product_options_related', array( $this, 'frequently_purchased_together_html' ) );
+        // Adds the frequently_bought_together select box into the link_products tab on product edit
+        add_action( 'woocommerce_product_options_related', array( $this, 'frequently_bought_together_html' ) );
 
         // Saves product meta
-        add_action( 'woocommerce_process_product_meta', array( $this, 'save_frequently_purchased_together_meta_data' ), 10, 2 );
+        add_action( 'woocommerce_process_product_meta', array( $this, 'save_frequently_bought_together_meta_data' ), 10, 2 );
 
         // AJAX search for products
-        add_action( 'wp_ajax_wcfpt_get_products', array( $this, 'get_products' ) );
+        add_action( 'wp_ajax_wcfbt_get_products', array( $this, 'get_products' ) );
 
         // Add 'Frequently Purchased Together' section to the single_product page. TODO: Probally add to tabs
-        add_action( 'woocommerce_after_single_product_summary', array( $this, 'single_product_frequently_purchased_together_html' ), 1 );
+        add_action( 'woocommerce_after_single_product_summary', array( $this, 'single_product_frequently_bought_together_html' ), 1 );
     }
 
     public function _admin_enqueue_scripts(){
@@ -45,7 +45,7 @@ class WC_fpt{
         wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css' );
         wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js', array('jquery') );
         
-	    wp_enqueue_script('wcfpt-admin', plugin_dir_url( __FILE__ ) . 'js/admin.js', array( 'jquery', 'select2' ), '', true ); 
+	    wp_enqueue_script('wcfbt-admin', plugin_dir_url( __FILE__ ) . 'js/admin.js', array( 'jquery', 'select2' ), '', true ); 
  
     }
 
@@ -53,30 +53,30 @@ class WC_fpt{
         /**
          * Enqueue select2 style and javascript - also custom file for usage.
          */
-        wp_enqueue_style( 'wcfpt', plugin_dir_url( __FILE__ ) . 'style.css' );
-        wp_enqueue_script( 'wcfpt-frontend', plugin_dir_url( __FILE__ ) . 'js/functions.js', array(), '', true ); 
+        wp_enqueue_style( 'wcfbt', plugin_dir_url( __FILE__ ) . 'style.css' );
+        wp_enqueue_script( 'wcfbt-frontend', plugin_dir_url( __FILE__ ) . 'js/functions.js', array(), '', true ); 
     }
 
-    public function frequently_purchased_together_html( ){
+    public function frequently_bought_together_html( ){
         /**
-         * Displays a select2 box for adding product ID's to wcfpt_frequently_purchased_together meta data.
+         * Displays a select2 box for adding product ID's to wcfbt_frequently_bought_together meta data.
          */
         global $post;
 
         // get any data that has already been set
-        $frequently_purchased_together = get_post_meta( $post->ID, 'wcfpt_frequently_purchased_together', true );
+        $frequently_bought_together = get_post_meta( $post->ID, 'wcfbt_frequently_bought_together', true );
 
         $html = '';
         
         $html .= '<div class="options_group">';
         
         // basic structure
-        $html .= '<p class="form_field"><label style="margin: 0" for="wcfpt_frequently_purchased_together">Frequently Purchased Together:</label><br /><select id="wcfpt_frequently_purchased_together" name="wcfpt_frequently_purchased_together[]" multiple="multiple" style="width:99%;max-width:25em;">';
+        $html .= '<p class="form_field"><label style="margin: 0" for="wcfbt_frequently_bought_together">Frequently Purchased Together:</label><br /><select id="wcfbt_frequently_bought_together" name="wcfbt_frequently_bought_together[]" multiple="multiple" style="width:99%;max-width:25em;">';
 
         // get meta and put into select box
-        if( $frequently_purchased_together ){
+        if( $frequently_bought_together ){
 
-            foreach( $frequently_purchased_together as $post_id ) {
+            foreach( $frequently_bought_together as $post_id ) {
 
                 $title = get_the_title( $post_id );
                 // if the post title is too long, truncate it and add "..." at the end
@@ -92,26 +92,29 @@ class WC_fpt{
 
     }
 
-    public function save_frequently_purchased_together_meta_data( $post_id, $post ){
+    public function save_frequently_bought_together_meta_data( $post_id, $post ){
         /**
          * Saves the product ids of items frequently purchased with this product.
          * 
          * If we want reverse look ups - maybe create custom table so that A + B is shown on both product pages.
          * THEY DO have a directly relationship with eachother.
          */
-        if( isset( $_POST['wcfpt_frequently_purchased_together'] ) ) update_post_meta( $post_id, 'wcfpt_frequently_purchased_together', $_POST['wcfpt_frequently_purchased_together'] );
+        if( isset( $_POST['wcfbt_frequently_bought_together'] ) ) update_post_meta( $post_id, 'wcfbt_frequently_bought_together', $_POST['wcfbt_frequently_bought_together'] );
 
         return $post_id;
     }
 
     public function get_products(){
-        // we will pass post IDs and titles to this array
+        /**
+         * Returns products - doesnt work with variable products.
+         * @return string 
+         */
 	    $return = array();
  
 	    // you can use WP_Query, query_posts() or get_posts() here - it doesn't matter
         $search_results = new WP_Query( array( 
             's'=> $_GET['q'], 
-            'post_type' => 'product',
+            'post_type' => array( 'product', 'product_variation'),
             'post_status' => 'publish',
             'ignore_sticky_posts' => 1,
             'posts_per_page' => 50,
@@ -128,7 +131,8 @@ class WC_fpt{
         if( $search_results->have_posts() ) :
             while( $search_results->have_posts() ) : $search_results->the_post();	
                 // shorten the title a little
-                $title = $this->truncate( $search_results->post->post_title );
+                $sku = get_post_meta( $search_results->post->ID, '_sku', true );
+                $title = sprintf( '%s - (SKU: %s)', $this->truncate( $search_results->post->post_title ), $sku );
                 $return[] = array( $search_results->post->ID, $title ); // array( Post ID, Post Title )
             endwhile;
         endif;
@@ -138,11 +142,11 @@ class WC_fpt{
 	    die;
     }
 
-    public function single_product_frequently_purchased_together_html(){
+    public function single_product_frequently_bought_together_html(){
         /**
          * Display a section for adding all FPT products to the cart with a single click
          */
-        include_once( 'template/frequently-purchased-together-list.php' );
+        include_once( 'template/frequently-bought-together-list.php' );
     }
 
     private function truncate( $str, $limit = 50 ){
@@ -155,28 +159,31 @@ class WC_fpt{
         return ( mb_strlen( $str ) > $limit ) ? mb_substr( $str, 0, ($limit - 1) ) . '...' : $str;
     }
 
-    private function package_frequently_purchased_together_data( $product_id ){
+    private function package_frequently_bought_together_data( $product_id ){
         /**
          * Packages product data up into a organized array of applicable data required for 'frequently bought together'
          */
 
          // get the ids
-        $frequently_purchased_together = get_post_meta( $product_id, 'wcfpt_frequently_purchased_together', true );
+        $frequently_bought_together = get_post_meta( $product_id, 'wcfbt_frequently_bought_together', true );
 
-        if( empty( $frequently_purchased_together ) ) return;
+        // dont do anything if not set
+        if( empty( $frequently_bought_together ) ) return;
         
         // init array
         $packaged_data = array();
 
         // add currently viewed product to the FRONT of the array.
-        array_unshift( $frequently_purchased_together, strval($product_id) );
+        array_unshift( $frequently_bought_together, strval($product_id) );
 
-        for( $i = 0; $i < sizeof($frequently_purchased_together); $i++ ){
+        for( $i = 0; $i < sizeof($frequently_bought_together); $i++ ){
 
             // get product
-            $product = wc_get_product( $frequently_purchased_together[$i] );
+            $product = wc_get_product( $frequently_bought_together[$i] );
 
-            if( $product ){
+            // check if item is in stock.
+            if( $product && $product->get_stock_status() === 'instock' ){
+
                 // add to packaged array
                 array_push( $packaged_data, array(
                     'id'         => $product->get_id(),
