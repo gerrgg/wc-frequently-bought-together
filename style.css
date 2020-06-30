@@ -43,7 +43,7 @@
   padding-top: 1rem;
 }
 #wcfbt-frequently-bought-together #wcfbt-add-to-cart-form label {
-  display: inline;
+  display: inline !important;
 }
 #wcfbt-frequently-bought-together #wcfbt-add-to-cart-form label:first-child:before {
   content: "This item:";

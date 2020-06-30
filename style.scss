@@ -54,7 +54,7 @@
         padding-top: 1rem;
 
         label{ 
-            display: inline; 
+            display: inline !important; 
             
             &:first-child:before{
                 content: "This item:"
