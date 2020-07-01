@@ -63,7 +63,6 @@ function wcfbt_maybe_add_multiple_products_to_cart( $url = false ) {
         } else {
             // woo_hack_invoke_private_method( 'WC_Form_Handler', 'add_to_cart_handler_simple', $product_id );
             WC()->cart->add_to_cart($product_id, sanitize_text_field( $_REQUEST['quantity'] ) );
-        
         }
     }
     

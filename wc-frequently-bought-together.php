@@ -97,9 +97,6 @@ class wcfbt_frequently_bought_together{
     public function save_frequently_bought_together_meta_data( $post_id, $post ){
         /**
          * Saves the product ids of items frequently purchased with this product.
-         * 
-         * If we want reverse look ups - maybe create custom table so that A + B is shown on both product pages.
-         * THEY DO have a directly relationship with eachother.
          */
         if( isset( $_POST['wcfbt_frequently_bought_together'] ) ) {
 
@@ -130,13 +127,6 @@ class wcfbt_frequently_bought_together{
             'post_status' => 'publish',
             'ignore_sticky_posts' => 1,
             'posts_per_page' => 50,
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'product_type',
-                    'field'    => 'slug',
-                    'terms'    => 'simple', 
-                ),
-            ),
         ) );
 
 
