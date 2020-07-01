@@ -19,6 +19,12 @@
 }
 #wcfbt-frequently-bought-together .list .item a {
   height: 150px;
+  display: flex;
+  align-items: center;
+}
+#wcfbt-frequently-bought-together .list .item a img {
+  max-width: 100%;
+  height: 100%;
 }
 #wcfbt-frequently-bought-together .list .item:after {
   font-size: 1.5rem;
