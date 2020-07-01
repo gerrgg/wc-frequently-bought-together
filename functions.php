@@ -49,11 +49,11 @@ function wcfbt_maybe_add_multiple_products_to_cart( $url = false ) {
     
         // Variable product handling
         if ( 'variable' === $add_to_cart_handler ) {
-            woo_hack_invoke_private_method( 'WC_Form_Handler', 'add_to_cart_handler_variable', $product_id );
+            wcfbt_hack_invoke_private_method( 'WC_Form_Handler', 'add_to_cart_handler_variable', $product_id );
     
         // Grouped Products
         } elseif ( 'grouped' === $add_to_cart_handler ) {
-            woo_hack_invoke_private_method( 'WC_Form_Handler', 'add_to_cart_handler_grouped', $product_id );
+            wcfbt_hack_invoke_private_method( 'WC_Form_Handler', 'add_to_cart_handler_grouped', $product_id );
     
         // Custom Handler
         } elseif ( has_action( 'woocommerce_add_to_cart_handler_' . $add_to_cart_handler ) ){
