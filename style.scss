@@ -2,6 +2,8 @@ $phone-width: "only screen and (max-width: 576px)";
 
 #wcfbt-frequently-bought-together{
 
+    padding-bottom: 1rem;
+
     .wrapper{ 
         display: flex; 
         @media #{$phone-width}{ display: block;  }
@@ -14,6 +16,8 @@ $phone-width: "only screen and (max-width: 576px)";
         .item{
             display: flex;
             align-items: center;
+
+            a{ height: 150px; }
             
             &:after{
                 font-size: 1.5rem;
@@ -35,8 +39,6 @@ $phone-width: "only screen and (max-width: 576px)";
             margin-bottom: .25rem;
             color: rgb(109, 109, 109);
             font-size: 0.9rem;
-            // font-size: 1rem;
-
         }
     }
 
