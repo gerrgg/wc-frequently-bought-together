@@ -26,7 +26,7 @@
                 
                     <?php 
                         $data = $frequently_bought_together[$i];
-                        $total_price += $data['price'];
+                        $total_price += (int)$data['price'];
                     ?>
 
                     <?php if( $i != 0 ) : ?>
