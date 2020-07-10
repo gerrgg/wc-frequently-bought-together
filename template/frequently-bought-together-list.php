@@ -60,20 +60,26 @@
             <?php $data = $frequently_bought_together[$i] ?>
 
             <input type="checkbox" for="wcfbt-<?php echo $data['id'] ?>" name="add-to-cart[]" value="<?php echo $data['id'] ?>" checked/>
+
             <label for="wcfbt-<?php echo $data['id'] ?>">
 
                 <?php if( $i == 0 ) : ?>
+
                     <span><b>This item:</b></span>
                     <span class="title"><?php echo $data['title'] ?></span>
 
                 <?php else : ?>
+
                     <a href="<?php echo $data['permalink'] ?>"><span class="title"><?php echo $data['title'] ?></span></a>
+
                 <?php endif; ?>
 
-
-
+                <?php if( $data['is_variable'] ) wcfbt_get_variation_dropdown( $data['id'] ); ?>
+                    
                 <span class="price"><?php echo $data['price_html'] ?></span>
+
             </label>
+            
             <br>
 
         <?php endfor; ?>

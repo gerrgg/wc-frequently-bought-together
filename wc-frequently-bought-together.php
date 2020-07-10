@@ -33,10 +33,12 @@ class wcfbt_frequently_bought_together{
 
         // AJAX search for products
         add_action( 'wp_ajax_wcfbt_get_products', array( $this, 'get_products' ) );
+        add_action( 'wp_ajax_wcfbt_get_variation_id', array( $this, 'get_variation_id' ) );
 
         // Add 'Frequently Purchased Together' section to the single_product page. TODO: Probally add to tabs
         add_action( 'woocommerce_after_single_product_summary', array( $this, 'single_product_frequently_bought_together_html' ), 1 );
     }
+
 
     public function _admin_enqueue_scripts(){
         /**
@@ -55,8 +57,13 @@ class wcfbt_frequently_bought_together{
         /**
          * Enqueue select2 style and javascript - also custom file for usage.
          */
+        
         wp_enqueue_style( 'wcfbt', plugin_dir_url( __FILE__ ) . 'style.css' );
+        
         wp_enqueue_script( 'wcfbt-frontend', plugin_dir_url( __FILE__ ) . 'js/functions.js', array(), '', true ); 
+
+        // make ajax url available to functions.js
+        wp_localize_script( 'wcfbt-frontend', 'wp_ajax', array( 'url' => admin_url( 'admin-ajax.php' ) ) );
     }
 
     public function frequently_bought_together_html( ){
@@ -144,6 +151,32 @@ class wcfbt_frequently_bought_together{
 	    die;
     }
 
+    public function get_variation_id(){
+        /**
+         * Get variation ID based on attribute selection
+         */
+        $options = ( ! empty( $_POST['options'] ) ) ? $_POST['options'] : array();
+        $parent_id = ( ! empty( $_POST['parent_id'] ) ) ? $_POST['parent_id'] : 0;
+
+        $product = wc_get_product( $parent_id );
+
+        if( $product && ! empty( $options ) ){
+
+            // loop through available variations
+            foreach( $product->get_available_variations() as $variation ){
+
+                // if there is a MATCH between the selected attributes and a variation's - return ID.
+                if( empty( array_diff( $options, $variation['attributes'] ) ) ){
+                    echo $variation['variation_id'];
+                }
+
+            }
+
+        }
+
+        die;
+    }
+
     public function single_product_frequently_bought_together_html(){
         /**
          * Display a section for adding all FPT products to the cart with a single click
@@ -188,12 +221,13 @@ class wcfbt_frequently_bought_together{
 
                 // add to packaged array
                 array_push( $packaged_data, array(
-                    'id'         => $product->get_id(),
-                    'title'      => $this->truncate( $product->get_name() ),
-                    'permalink'  => $product->get_permalink(),
-                    'image_src'  => wp_get_attachment_image_src( $product->get_image_id() )[0],
-                    'price'      => $product->get_price(),
-                    'price_html' => $product->get_price_html(),
+                    'id'             => $product->get_id(),
+                    'is_variable'       => $product->is_type( 'variable' ),
+                    'title'          => $this->truncate( $product->get_name() ),
+                    'permalink'      => $product->get_permalink(),
+                    'image_src'      => wp_get_attachment_image_src( $product->get_image_id() )[0],
+                    'price'          => $product->get_price(),
+                    'price_html'     => $product->get_price_html(),
                 ) );
             }
         }
@@ -211,3 +245,4 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
     new wcfbt_frequently_bought_together();
 }
+

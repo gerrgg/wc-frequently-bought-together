@@ -2,6 +2,7 @@ const FrequentlyPurchasedTogether = ( e ) => {
 	
 	let button = e.querySelector('#wcfbt-add-to-cart-button');
 	let inputs = e.getElementsByTagName('input');
+	let selects = e.getElementsByTagName('select')
 	let priceTotalDom = e.querySelector('#wcfbt-price-total');
 
 	const setup = () => {
@@ -13,8 +14,64 @@ const FrequentlyPurchasedTogether = ( e ) => {
 			input.addEventListener( 'click', countInputs )
 		}
 
+		for( let select of selects ){
+			select.addEventListener( 'change', getVariationIdFromAttributes )
+
+			if( select.value !== '' ) getVariationIdFromAttributes( select )
+
+		}
 		
 		countInputs();
+	}
+
+	const getVariationIdFromAttributes = ( e ) => {
+
+		// Get the right target dom element
+		let select = ( e.target === undefined ) ? e : e.target;
+
+		if( select !== undefined ){
+
+			// get all related variation selects
+			let variation_dropdowns = document.getElementsByClassName( select.className )
+
+			// get variable product id
+			let parentId = select.className.replace( 'wcfbt_', '' )
+
+			// checkbox whose value is the ID being added to the cart
+			let parentCheckbox = select.parentElement.previousElementSibling;
+			
+			let selected_options = {};
+			let ready = true;
+
+			// check if all dropdowns are set and package data if so
+			for( let dropdown of variation_dropdowns ){
+
+				if( dropdown.value === '' ){
+					ready = false;
+				} else {
+					selected_options[dropdown.name] = dropdown.value
+				}
+				
+			}
+
+			// get variation_id using selected attributes
+			if( ready ){
+
+				let data = { 
+					action: 'wcfbt_get_variation_id', 
+					options: selected_options,
+					parent_id: parentId
+				}
+
+				jQuery.post( wp_ajax.url, data, function( response ) { 
+					console.log( response )
+					parentCheckbox.value = response;
+					countInputs();
+				} );
+			}
+
+		}
+
 	}
 
 	const countInputs = ( ) => {

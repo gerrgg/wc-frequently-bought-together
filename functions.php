@@ -72,18 +72,20 @@ function wcfbt_maybe_add_multiple_products_to_cart( $url = false ) {
 // Fire before the WC_Form_Handler::add_to_cart_action callback.
 add_action( 'wp_loaded', 'wcfbt_maybe_add_multiple_products_to_cart', 15 );
      
-/**
- * Invoke class private method
- *
- * @since   0.1.0
- *
- * @param   string $class_name
- * @param   string $methodName
- *
- * @return  mixed
- */
+
 
 function wcfbt_hack_invoke_private_method( $class_name, $methodName ) {
+    /**
+     * Invoke class private method
+     *
+     * @since   0.1.0
+     *
+     * @param   string $class_name
+     * @param   string $methodName
+     *
+     * @return  mixed
+     */
+    
     if ( version_compare( phpversion(), '5.3', '<' ) ) {
         throw new Exception( 'PHP version does not support ReflectionClass::setAccessible()', __LINE__ );
     }
@@ -98,3 +100,42 @@ function wcfbt_hack_invoke_private_method( $class_name, $methodName ) {
     return call_user_func_array( array( $method, 'invoke' ), $args );
 }
 
+function wcfbt_get_variation_dropdown( $product_id ){
+    /**
+     * Create inline dropdowns for selecting product variations
+     */
+
+    $product = wc_get_product( $product_id );
+
+    // if product exists and has available variations to list.
+    if( $product && ! empty( $product->get_variation_attributes() ) ){
+
+        // loop through all variation attributes assigned to variable product
+        foreach ( $product->get_variation_attributes() as $attribute_name => $options ) : ?>
+
+            <?php
+                // output label
+                echo '<strong>' . wc_attribute_label( $attribute_name ) . ': </strong>';
+
+                // get selected and default variations
+                $selected = isset( $_REQUEST[ 'attribute_' . sanitize_title( $attribute_name ) ] ) ? wc_clean( urldecode( $_REQUEST[ 'attribute_' . sanitize_title( $attribute_name ) ] ) ) : $product->get_variation_default_attribute( $attribute_name );
+
+                // arguments for woocommerce dropdown function
+                $args = array( 
+                    'options' => $options, 
+                    'attribute' => $attribute_name, 
+                    'product' => $product, 
+                    'selected' => $selected,
+                    'id'        => $product->get_id() . '_' . $attribute_name,
+                    'class'     => 'wcfbt_' . $product->get_id(),
+                );
+
+                // display dropdown
+                wc_dropdown_variation_attribute_options( $args );
+            ?>
+            
+        <?php endforeach;
+        
+    }
+
+}
