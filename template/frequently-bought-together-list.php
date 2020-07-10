@@ -14,7 +14,7 @@
 
 <div id="wcfbt-frequently-bought-together">
 
-    <h3>Frequently Bought Together</h3>
+    <h3>Frequently bought together</h3>
     
     <div class="wrapper">
 
@@ -73,7 +73,7 @@
                     <a href="<?php echo $data['permalink'] ?>"><span class="title"><?php echo $data['title'] ?></span></a>
 
                 <?php endif; ?>
-
+                    
                 <?php if( $data['is_variable'] ) wcfbt_get_variation_dropdown( $data['id'] ); ?>
                     
                 <span class="price"><?php echo $data['price_html'] ?></span>

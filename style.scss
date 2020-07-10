@@ -21,6 +21,11 @@ $phone-width: "only screen and (max-width: 576px)";
                 height: 150px; 
                 width: 150px;
 
+                @media #{$phone-width}{
+                    height: auto; 
+                    width: auto;
+                }
+
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -69,16 +74,22 @@ $phone-width: "only screen and (max-width: 576px)";
     #wcfbt-add-to-cart-form{
         padding-top: 1rem;
 
+        input{ margin-top: 1rem; }
+
         label{ 
             display: inline !important; 
             
             &:first-child:before{
-                content: "This item:"
+                content: "This item:";
+
+                @media #{$phone-width}{ content: ""; }
             }
+
+            span.title{ white-space: nowrap; }
 
             span.price{
                 font-size: 1rem;
-                margin: 0;
+                margin-bottom: 1rem;
                 line-height: normal;
                 
                 span.woocommerce-Price-amount{
@@ -89,6 +100,11 @@ $phone-width: "only screen and (max-width: 576px)";
     
                     &:before{ content: '' !important }
                 }
+            }
+
+            select { 
+                background-color: #fff;
+                color: #333;
             }
             
         }

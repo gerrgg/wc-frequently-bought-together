@@ -1,6 +1,6 @@
 <?php 
 /**
- * Plugin Name: Frequently Bought Together for WooCommerce
+ * Plugin Name: GERRG Frequently Bought Together for WooCommerce
  * Plugin URI: http://gerrg.com/wc-frequently-bought-together
  * Description: Group up items frequently purchased together and add to cart with a single click.
  * Version: 1.1.0
@@ -127,7 +127,6 @@ class wcfbt_frequently_bought_together{
          */
 	    $return = array();
  
-	    // you can use WP_Query, query_posts() or get_posts() here - it doesn't matter
         $search_results = new WP_Query( array( 
             's'=> sanitize_text_field( $_GET['q'] ), 
             'post_type' => array( 'product', 'product_variation'),

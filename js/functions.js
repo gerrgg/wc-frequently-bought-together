@@ -64,11 +64,14 @@ const FrequentlyPurchasedTogether = ( e ) => {
 				}
 
 				jQuery.post( wp_ajax.url, data, function( response ) {
+					console.log( response )
+
 					// set checkbox to variation_id
 					parentCheckbox.value = response[0];
 
 					// set item price to variation price_html
-					parentCheckbox.nextElementSibling.lastElementChild.innerHTML = response[1]
+					if( response[1].length > 0 )
+						parentCheckbox.nextElementSibling.lastElementChild.innerHTML = response[1]
 
 					// recount inputs and rebuild add-to-cart URL
 					countInputs();

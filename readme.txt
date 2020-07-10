@@ -1,58 +1,45 @@
-=== Frequently Bought Together for Woocommerce ===
+=== GERRG Frequently Bought Together for Woocommerce ===
 Contributors: gregbast1994
-Tags: woocommerce, wordpress, add-to-cart,
-Requires at least: 1.00
+Tags: frequently, add-to-cart, related, upsells, woo, woocommerce, wordpress, wc
+Requires at least: 4.0
 Tested up to: 5.4.2
-Requires PHP: 7.0
+Requires PHP: 7.3
 Stable tag: master
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Group up items and allows customers to add them all to the cart in a single click.
+Add products frequently bought together to the cart with a single click
 
 == Description ==
-# Frequently Bought Together for Woocommerce
-> Brings \'frequently bought together\' functionality to woocommerce.
 
-## Table of contents
-* [General info](#general-info)
-* [Screenshots](#screenshots)
-* [Setup](#setup)
-* [Features](#features)
-* [Status](#status)
-* [Inspiration](#inspiration)
-* [Contact](#contact)
+GERRG Frequently Bought Together for Woocommerce is a simple lightweight designed to improve sales
+and customer experience with the click of a button. This plugin does not hide features behind any "pay-walls"
+like so many others.
 
-## General info
-Allows admins to link products together as \"frequently purchased together\" and add multiple items to the cart at the same time. The form is dynamic - changing the url and button text - as items are checked on and off.
+== Features ==
 
-## Screenshots
-### Back End 
-![wcfbt Select2 Box on Edit Product screen](./img/wcfbt-back-end.png)
-### Product Page 
-![wcfbt form on product page](./img/wc-fbt-front-end.png)
+* AJAX search for SKU, product name or phrases
+* Works with simple, variable and variation products.
+* Uses product meta for groupings keeping DB structure simple
+* Allows customers to check off items they dont want added to the cart
+* Dynamic subtotal pricing as items as added and removed
+* Supports variable default variation selections
+* Lightweight plugin will not affect store performance
+* Add separately: make additional items to be treated as separate individual products\
+* Clean AMAZON-like user interface
+* Works with all Wordpress, Woocommerce other GERRG plugins
 
+== Screenshots ==
 
-## Setup
-1. Download the plugin
-2. Install
-3. Go to Edit Product > Related Items
-4. Add a few products
-5. Go to product page to test
+1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is stored in the /assets directory.
+2. This is the second screen shot
 
-## Features
-List of features ready and TODOs for future development
-* Select2 input box for easy adding of product IDS on related products tab
-* Dynamic add to cart form - allowing users to easily remove specific items while adding the rest to cart
-* Allows adding multiple items to the cart on the click of a button
+== Practical uses == 
 
-## To-do list:
-* Create table which would allow reverse look ups - A + B on both product A\'s page & B\'s.
-* Include a quantity input field
-* Make compatible with variable products
+Allows admins to easily add related products to be purchased together with the click of a button.
+This acts as a fantastic reminder that you might want this "snazzy hat" with that dope shirt. Hopefully, this
+plugin increases average order value buy including additional items that might otherwise be over looked. 
 
-## Status
-Project is: _in progress_
 
 ## Inspiration
 Special shoutout to [@jtsternberg](https://dsgnwrks.pro/snippets/woocommerce-allow-adding-multiple-products-to-the-cart-via-the-add-to-cart-query-string/) for providing the hack for adding multiple products to cart.
@@ -60,6 +47,3 @@ Special shoutout to [@jtsternberg](https://dsgnwrks.pro/snippets/woocommerce-all
 ## Contact
 Created by [@gerrgg](http://gerrg.com/) - feel free to contact me!
 
-== Screenshots ==
-1. wcfbt Select2 Box on Edit Product screen
-2. wcfbt form on product page

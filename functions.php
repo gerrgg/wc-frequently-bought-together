@@ -110,6 +110,8 @@ function wcfbt_get_variation_dropdown( $product_id ){
     // if product exists and has available variations to list.
     if( $product && ! empty( $product->get_variation_attributes() ) ){
 
+        echo '<br>';
+        
         // loop through all variation attributes assigned to variable product
         foreach ( $product->get_variation_attributes() as $attribute_name => $options ) : ?>
 
