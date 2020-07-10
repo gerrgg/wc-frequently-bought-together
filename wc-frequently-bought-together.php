@@ -3,7 +3,7 @@
  * Plugin Name: Frequently Bought Together for WooCommerce
  * Plugin URI: http://gerrg.com/wc-frequently-bought-together
  * Description: Group up items frequently purchased together and add to cart with a single click.
- * Version: 1.0.2
+ * Version: 1.1.0
  * Author: GREG BASTIANELLI
  * Author URI: http://gerrg.com/
  * Text Domain: wcfbt
@@ -164,10 +164,15 @@ class wcfbt_frequently_bought_together{
 
             // loop through available variations
             foreach( $product->get_available_variations() as $variation ){
-
                 // if there is a MATCH between the selected attributes and a variation's - return ID.
                 if( empty( array_diff( $options, $variation['attributes'] ) ) ){
-                    echo $variation['variation_id'];
+
+                    // send variation_id and variation_price
+                    wp_send_json( array( 
+                        $variation['variation_id'], 
+                        $variation['price_html'] 
+                    )  );
+                    
                 }
 
             }

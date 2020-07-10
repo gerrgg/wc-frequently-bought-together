@@ -63,9 +63,14 @@ const FrequentlyPurchasedTogether = ( e ) => {
 					parent_id: parentId
 				}
 
-				jQuery.post( wp_ajax.url, data, function( response ) { 
-					console.log( response )
-					parentCheckbox.value = response;
+				jQuery.post( wp_ajax.url, data, function( response ) {
+					// set checkbox to variation_id
+					parentCheckbox.value = response[0];
+
+					// set item price to variation price_html
+					parentCheckbox.nextElementSibling.lastElementChild.innerHTML = response[1]
+
+					// recount inputs and rebuild add-to-cart URL
 					countInputs();
 				} );
 			}
