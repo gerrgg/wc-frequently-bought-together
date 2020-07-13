@@ -64,9 +64,6 @@
 #wcfbt-frequently-bought-together #wcfbt-add-to-cart-form {
   padding-top: 1rem;
 }
-#wcfbt-frequently-bought-together #wcfbt-add-to-cart-form input {
-  margin-top: 1rem;
-}
 #wcfbt-frequently-bought-together #wcfbt-add-to-cart-form label {
   display: inline !important;
 }
@@ -98,6 +95,7 @@
 #wcfbt-frequently-bought-together #wcfbt-add-to-cart-form label select {
   background-color: #fff;
   color: #333;
+  max-width: 150px;
 }
 
 /*# sourceMappingURL=style.css.map */

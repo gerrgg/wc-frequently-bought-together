@@ -74,8 +74,6 @@ $phone-width: "only screen and (max-width: 576px)";
     #wcfbt-add-to-cart-form{
         padding-top: 1rem;
 
-        input{ margin-top: 1rem; }
-
         label{ 
             display: inline !important; 
             
@@ -105,6 +103,7 @@ $phone-width: "only screen and (max-width: 576px)";
             select { 
                 background-color: #fff;
                 color: #333;
+                max-width: 150px;
             }
             
         }
