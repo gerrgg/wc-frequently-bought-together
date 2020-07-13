@@ -75,9 +75,6 @@
     content: "";
   }
 }
-#wcfbt-frequently-bought-together #wcfbt-add-to-cart-form label span.title {
-  white-space: nowrap;
-}
 #wcfbt-frequently-bought-together #wcfbt-add-to-cart-form label span.price {
   font-size: 1rem;
   margin-bottom: 1rem;

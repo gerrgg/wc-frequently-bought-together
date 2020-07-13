@@ -83,8 +83,6 @@ $phone-width: "only screen and (max-width: 576px)";
                 @media #{$phone-width}{ content: ""; }
             }
 
-            span.title{ white-space: nowrap; }
-
             span.price{
                 font-size: 1rem;
                 margin-bottom: 1rem;
