@@ -17,8 +17,10 @@ const FrequentlyPurchasedTogether = ( e ) => {
 		for( let select of selects ){
 			select.addEventListener( 'change', getVariationIdFromAttributes )
 
-			if( select.value !== '' ) getVariationIdFromAttributes( select )
-
+			// not blank
+			if( select.value !== '' ) {
+				getVariationIdFromAttributes( select )
+			}
 		}
 		
 		countInputs();
@@ -92,17 +94,10 @@ const FrequentlyPurchasedTogether = ( e ) => {
 		for( let input of inputs ){
 
 			if( input.checked ) {
+
 				orderList.push(input.value)
 
-				let priceDom = input.nextElementSibling.lastElementChild;
-
-				if( document.body.contains(priceDom.querySelector('ins') ) ){
-					// use sale price if set
-					totalPrice += parseFloat(priceDom.querySelector('ins').innerText.substring(1));
-				} else {
-					// use regular price
-					totalPrice += parseFloat(priceDom.innerText.substring(1));
-				}
+				totalPrice += getTotalPrice(input)
 			}
 			
 		}
@@ -111,6 +106,22 @@ const FrequentlyPurchasedTogether = ( e ) => {
 		buildUrl( orderList )
 
 	};
+
+	const getTotalPrice = ( input ) => {
+		let priceDom = input.nextElementSibling.lastElementChild;
+		let price = ''
+
+		if( document.body.contains(priceDom.querySelector('ins') ) ){
+			// use sale price
+			price = parseFloat(priceDom.querySelector('ins').innerText.substring(1));
+		} else {
+			// use regular price
+			price = parseFloat(priceDom.innerText.substring(1));
+		}
+
+		return price;
+
+	}
 
 	const setTotalPrice = ( totalPrice ) => {
 		priceTotalDom.innerText = '$' + totalPrice.toFixed(2);
