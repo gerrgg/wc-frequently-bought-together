@@ -94,8 +94,15 @@ const FrequentlyPurchasedTogether = ( e ) => {
 			if( input.checked ) {
 				orderList.push(input.value)
 
-				// Get price element and remove '$'
-				totalPrice += parseFloat(input.nextElementSibling.lastElementChild.innerText.substring(1));
+				let priceDom = input.nextElementSibling.lastElementChild;
+
+				if( document.body.contains(priceDom.querySelector('ins') ) ){
+					// use sale price if set
+					totalPrice += parseFloat(priceDom.querySelector('ins').innerText.substring(1));
+				} else {
+					// use regular price
+					totalPrice += parseFloat(priceDom.innerText.substring(1));
+				}
 			}
 			
 		}
