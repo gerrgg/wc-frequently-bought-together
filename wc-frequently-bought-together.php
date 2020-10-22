@@ -221,7 +221,7 @@ class wcfbt_frequently_bought_together{
             $product = wc_get_product( $frequently_bought_together[$i] );
 
             // check if item is in stock.
-            if( $product && $product->get_stock_status() === 'instock' ){
+            if( $product ){
 
                 // add to packaged array
                 array_push( $packaged_data, array(

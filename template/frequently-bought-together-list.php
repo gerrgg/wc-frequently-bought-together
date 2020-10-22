@@ -7,8 +7,6 @@
 
  $frequently_bought_together = $this->package_frequently_bought_together_data( $product->get_id() );
  $total_price = 0;
- 
- var_dump($frequently_bought_together);
 
  if( empty( $frequently_bought_together ) ) return;
 
