@@ -129,7 +129,7 @@ class wcfbt_frequently_bought_together{
  
         $search_results = new WP_Query( array( 
             's'=> sanitize_text_field( $_GET['q'] ), 
-            'post_type' => array( 'product', 'product_variation'),
+            'post_type' => array( 'product'),
             'post_status' => 'publish',
             'ignore_sticky_posts' => 1,
             'posts_per_page' => 50,
