@@ -34,6 +34,7 @@ class wcfbt_frequently_bought_together{
         // AJAX search for products
         add_action( 'wp_ajax_wcfbt_get_products', array( $this, 'get_products' ) );
         add_action( 'wp_ajax_wcfbt_get_variation_id', array( $this, 'get_variation_id' ) );
+        add_action( 'wp_ajax_nopriv_wcfbt_get_variation_id', array( $this, 'get_variation_id' ) );
 
         // Add 'Frequently Purchased Together' section to the single_product page. TODO: Probally add to tabs
         add_action( 'woocommerce_after_single_product_summary', array( $this, 'single_product_frequently_bought_together_html' ), 1 );
